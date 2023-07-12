@@ -14,10 +14,7 @@ const TableProductTransaksi = () => {
   const [shouldRefresh, setShouldRefresh] = useState(false);
 
   const { user } = useSelector((state) => state.auth);
-  // console.log(user?.username)
-
-  // const isKasir = user?.username === 'kasir';
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -96,7 +93,12 @@ const TableProductTransaksi = () => {
                 <div className="text-sm text-gray-900">{item.category.name}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">{item.price}</div>
+                <div className="text-sm text-gray-900">
+                  {item.price.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                  })}
+                </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <form onSubmit={(event) => handleAddToCart(event, item.id)}>
@@ -107,7 +109,7 @@ const TableProductTransaksi = () => {
                     value={quantities[item.id] || ''} // Mengambil nilai quantity dari objek quantities menggunakan ID produk
                     onChange={(event) => handleQuantityChange(event, item.id)} // Memanggil fungsi handleQuantityChange dengan ID produk yang sesuai
                   />
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl ml-2" type="submit">
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl ml-2 " type="submit" >
                     <ShoppingCartIcon strokeWidth={2} className="h-5 w-5" />
                   </button>
                 </form>

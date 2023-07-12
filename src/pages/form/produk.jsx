@@ -14,8 +14,8 @@ export function Produk () {
     name: '',
     categoryId: '',
     price: '',
-    description : '',
     expired: '',
+    description : '',
   });
 
   const [categories, setCategories] = useState([]);
@@ -133,8 +133,8 @@ export function Produk () {
       id: '',
       name: '',
       categoryId: '',
-      harga: '',
-      stok: '',
+      price: '',
+      description: '',
       expired: ''
     });
     navigate('../../dashboard/daftarObat');
@@ -216,7 +216,7 @@ export function Produk () {
                 className="block w-full px-4 py-2 pr-8 rounded-md border border-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 id="description"
                 name="description"
-                type="number"
+                type="text"
                 placeholder="Deskripsi"
                 value={formData.description}
                 onChange={handleInputChange}

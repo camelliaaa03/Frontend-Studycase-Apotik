@@ -42,7 +42,7 @@ const TableCart = ({ resetCart }) => {
     const calculateSubtotals = () => {
       const subtotals = data.map((item, index) => {
         const productData = productDataList[index] || {};
-        return item.quantity * productData.harga;
+        return item.quantity * productData.price;
       });
       setSubtotals(subtotals);
     };
@@ -104,7 +104,12 @@ const TableCart = ({ resetCart }) => {
                   <div className="text-sm text-gray-900">{item.quantity}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">{subtotal}</div>
+                  <div className="text-sm text-gray-900">
+                    {subtotal.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                  })}
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <button

@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardBody, Typography, Button } from '@material-tailwind/react';
 import {useNavigate} from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import TableProduct from "../../components/TableProduct";
 import { useSelector } from "react-redux";
 
@@ -10,7 +10,7 @@ export function DaftarObat () {
   const { user } = useSelector((state) => state.auth);
   const isKasir = user?.username === "kasir";
 
-  const handleTambahData = () => {
+   const handleTambahData = () => {
     if (isKasir) {
       // Pengguna kasir tidak diizinkan mengakses halaman "Tambah Data"
       alert('Anda tidak diizinkan mengakses halaman ini.');
@@ -22,7 +22,7 @@ export function DaftarObat () {
 
   return (
     <div className="mt-8 mb-8 flex flex-col gap-12">
-      <div class="basis-1/2 hover:basis-1/2">
+      <div className="basis-1/2 hover:basis-1/2">
         <Button disabled={isKasir} onClick={handleTambahData}>Tambah Data</Button>
       </div>
       <Card>

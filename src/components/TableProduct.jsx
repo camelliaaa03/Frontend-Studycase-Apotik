@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { format } from 'date-fns';
-import {  Button } from "@material-tailwind/react";
+import { PencilSquareIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
 import authHeader from '../services/auth-header';
 
 const TableProduct = () => {
@@ -75,7 +75,7 @@ const TableProduct = () => {
               No
             </th>
             <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
-              Name
+              Nama
             </th>
             <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
               Harga
@@ -87,26 +87,24 @@ const TableProduct = () => {
               Kategori
             </th>
             <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
-              Aksi
-            </th>
-            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
               Deskripsi
             </th>
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
+              Aksi
+            </th>
+            
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
           {data.map((item, index) => (
             <tr key={item.id}>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-4">
                 <div className="text-sm text-gray-900">{count + index}</div>
               </td>
-              {/* <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-500">{item.id}</div>
-              </td> */}
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-900">{item.name}</div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-4">
                 <div className="text-sm text-gray-900">
                   {item.price.toLocaleString('id-ID', {
                       style: 'currency',
@@ -114,20 +112,20 @@ const TableProduct = () => {
                   })}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-4">
                 <div className="text-sm text-gray-900">
                 {format(new Date(item.expired), 'dd/MM/yyyy')}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-6 py-4">
                 <div className="text-sm text-gray-900">{item.category.name}</div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-500">{item.description}</div>
+              <td className="px-6 py-4">
+                <div className="text-sm text-gray-900 break-words">{item.description}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md mr-2" onClick={() => handleEdit(item.id)} disabled={isKasir}>Edit</Button>
-                <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-md" onClick={() => handleDelete(item.id)} disabled={isKasir}>Delete</Button>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl ml-2" onClick={() => handleEdit(item.id)} disabled={isKasir}><PencilSquareIcon strokeWidth={2} className="h-5 w-5 flex items-center" /></button>
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl ml-2" onClick={() => handleDelete(item.id)} disabled={isKasir}><MinusCircleIcon strokeWidth={2} className="h-5 w-5 flex items-center" /></button>
               </td>
             </tr>
           ))}

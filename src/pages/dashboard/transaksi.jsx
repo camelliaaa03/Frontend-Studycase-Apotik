@@ -6,7 +6,7 @@ import {
   Typography,
   Button,
 } from '@material-tailwind/react';
-import { MinusCircleIcon } from "@heroicons/react/24/outline";
+import { MinusCircleIcon, MagnifyingGlassIcon} from "@heroicons/react/24/outline";
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -53,7 +53,7 @@ export function Transaksi() {
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {['Id', 'Tanggal', 'Customer', 'Jml Item', 'Total', 'Action'].map((el) => (
+                {['Id', 'Tanggal', 'Customer', 'Jml Item', 'Total', 'Aksi'].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -100,6 +100,10 @@ export function Transaksi() {
                     onClick={() => handleDelete(order.id)}
                   >
                     <MinusCircleIcon strokeWidth={2} className="h-5 w-5" />
+                  </button>
+                  <button
+                    className="bg-yellow-500 hover:bg-yellow-700 text-black font-bold py-2 px-4 rounded-xl ml-2">
+                    <MagnifyingGlassIcon strokeWidth={2} className="h-5 w-5" />
                   </button>
                   </td>
                   

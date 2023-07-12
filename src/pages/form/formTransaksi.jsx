@@ -63,7 +63,7 @@ import React, { useState, useEffect } from 'react';
       const calculateSubtotals = () => {
         const subtotals = data.map((item, index) => {
           const productData = productDataList[index] || {};
-          let tot = item.quantity * productData.harga;
+          let tot = item.quantity * productData.price;
           return tot;
         });
         setSubtotals(subtotals);
@@ -163,7 +163,7 @@ import React, { useState, useEffect } from 'react';
           <Card className="mr-10">
             <CardHeader variant="gradient" color="blue" className="mb-5 p-4">
               <Typography variant="h6" color="white">
-                Detail Order
+                Order
               </Typography>
             </CardHeader>
             <CardBody className="overflow-y-auto h-64 px-0 pt-0 pb-2">

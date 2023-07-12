@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Button } from "@material-tailwind/react";
+import { PencilSquareIcon, MinusCircleIcon } from "@heroicons/react/24/outline";
 import authHeader from '../services/auth-header';
 
 const TableCategory = () => {
@@ -69,9 +70,9 @@ const TableCategory = () => {
       <table className="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
-            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">ID</th>
-            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Name</th>
-            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Actions</th>
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Id Category</th>
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Nama</th>
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Aksi</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -84,22 +85,22 @@ const TableCategory = () => {
                 <div className="text-sm text-gray-900">{item.name}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <Button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md mr-2"
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl ml-2"
                   ripple={true}
                   onClick={() => handleEdit(item.id)}
                   disabled={isKasir}
                 >
-                  Edit
-                </Button>
-                <Button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-md"
+                  <PencilSquareIcon strokeWidth={2} className="h-5 w-5 flex items-center" />
+                </button>
+                <button
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl ml-2"
                   ripple={true}
                   onClick={() => handleDelete(item.id)}
                   disabled={isKasir}
                 >
-                  Delete
-                </Button>
+                  <MinusCircleIcon strokeWidth={2} className="h-5 w-5 flex items-center" />
+                </button>
               </td>
             </tr>
           ))}
