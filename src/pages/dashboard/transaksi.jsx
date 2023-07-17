@@ -8,11 +8,12 @@ import {
 } from '@material-tailwind/react';
 import { MinusCircleIcon, MagnifyingGlassIcon} from "@heroicons/react/24/outline";
 import { format } from 'date-fns';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
 export function Transaksi() {
   const [orderData, setOrderData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrderData = async () => {
@@ -101,10 +102,11 @@ export function Transaksi() {
                   >
                     <MinusCircleIcon strokeWidth={2} className="h-5 w-5" />
                   </button>
-                  <button
-                    className="bg-yellow-500 hover:bg-yellow-700 text-black font-bold py-2 px-4 rounded-xl ml-2">
+                  {/* <button className="bg-yellow-500 hover:bg-yellow-700 text-black font-bold py-2 px-4 rounded-xl ml-2"
+                  onClick={() => handleDetail(order.id)}
+                  >
                     <MagnifyingGlassIcon strokeWidth={2} className="h-5 w-5" />
-                  </button>
+                  </button> */}
                   </td>
                   
                 </tr>

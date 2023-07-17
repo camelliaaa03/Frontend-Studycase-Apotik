@@ -54,15 +54,9 @@ export const routes = [
   },
 
   {
-    title: "Settings",
+    title: " ",
     layout: "dashboard",
     pages: [
-      // {
-      //   icon: <UserGroupIcon {...icon} />,
-      //   name: "Manajemen User",
-      //   path: "/managementUser",
-      //   element: <Management />,
-      // },
       {
         icon: <ArrowLeftOnRectangleIcon {...icon} />,
         name: "Logout",
@@ -98,7 +92,8 @@ export const routes = [
       {
         path: "/editProduct",
         element: <EditProduct />
-      }
+      },
+
     ],
   },
 ];
