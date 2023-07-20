@@ -22,6 +22,7 @@ import React, { useState, useEffect } from 'react';
   
     const [shouldRefresh, setShouldRefresh] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({});
+    const [successMessage, setSuccessMessage] = useState('');
   
     const handleAdd = (productId) => {
       const selected = data.find((item) => item.id === productId);
@@ -112,6 +113,8 @@ import React, { useState, useEffect } from 'react';
         };
   
         await axios.post('http://localhost:8080/api/order', orderData);
+
+        setSuccessMessage('Data berhasil disimpan ke tabel order.');
   
         // Reset cart after saving
         setData([]);
@@ -130,6 +133,8 @@ import React, { useState, useEffect } from 'react';
   
         // Reset cart data
         resetCart();
+
+        window.alert(successMessage);
       } catch (error) {
         console.error(error);
       }
@@ -144,14 +149,14 @@ import React, { useState, useEffect } from 'react';
 
     return (
       <div>
-        <div className="mt-12 mb-8 flex flex-col gap-12">
+        <div className="mt-8 mb-8 flex flex-col gap-12">
           <Card>
             <CardHeader variant="gradient" color="blue" className="mb-5 p-4">
               <Typography variant="h6" color="white">
                 Data Produk
               </Typography>
             </CardHeader>
-            <CardBody className="overflow-y-auto h-64 px-0 pt-0 pb-2">
+            <CardBody className="overflow-y-auto h-96 px-0 pt-0 pb-2">
               <TableProductTransaksi
                 selectedProduct={selectedProduct}
                 handleAdd={handleAdd}
@@ -159,8 +164,8 @@ import React, { useState, useEffect } from 'react';
             </CardBody>
           </Card>
         </div>
-        <div className="mt-12 mb-8 flex flex-nowrap gap-6">
-          <Card className="mr-10">
+        <div className="mt-10 mb-8 flex">
+          <Card className="mr-10 w-full">
             <CardHeader variant="gradient" color="blue" className="mb-5 p-4">
               <Typography variant="h6" color="white">
                 Order
@@ -175,7 +180,7 @@ import React, { useState, useEffect } from 'react';
               />
             </CardBody>
           </Card>
-          <Card>
+          <Card className="w-fit">
             <CardBody className="px-0 pt-0 pb-0 w-96">
               <CardHeader variant="gradient" color="blue" className="mb-5 p-4">
                 <Typography variant="h6" color="white">
@@ -184,6 +189,11 @@ import React, { useState, useEffect } from 'react';
               </CardHeader>
             </CardBody>
             <CardBody className="pt-2 flex flex-col gap-4">
+              {successMessage && (
+                <div className="bg-green-200 text-green-800 rounded-md p-2">
+                  {successMessage}
+                </div>
+              )}
               <label className="block text-gray-700 text-sm font-bold mb-0" htmlFor="id">
                 Total
               </label>

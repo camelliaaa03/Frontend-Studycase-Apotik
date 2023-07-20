@@ -88,18 +88,18 @@ export function Produk () {
             if (user.username === 'admin') {
               if (formData.id) {
                 await axios.put(`http://localhost:8080/api/products/${formData.id}`, formData, { headers: authHeader() });
-                console.log('Produk berhasil diperbarui');
+                console.log('Product updated successfully');
               } else {
                 await axios.post('http://localhost:8080/api/products', formData, { headers: authHeader() });
-                console.log('Produk berhasil ditambahkan');
+                console.log('Produk saved successfully');
               }
               alert('Produk berhasil disimpan!');
               navigate('../../dashboard/daftarObat');
             } else {
-              alert('Anda tidak memiliki izin untuk menambahkan produk');
+              alert('You dont have permission to add the product');
             }
           } else {
-            alert('Token tidak tersedia. Silahkan Login');
+            alert('Token expired, please try again');
           }
         }
       } catch (error) {

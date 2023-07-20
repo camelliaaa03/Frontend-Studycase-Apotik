@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import UserService from "../../services/user.service";
 import EventBus from "../../common/EventBus";
 import authHeader from '../../services/auth-header';
+// import {parseISO, format } from 'date-fns';
 
 const EditProduct = () => {
 
@@ -145,6 +146,11 @@ const EditProduct = () => {
     navigate('../../dashboard/daftarObat');
   };
 
+  // const formatDateForInput = (isoDate) => {
+  //   const date = parseISO(isoDate);
+  //   return format(date, 'yyyy-MM-ddTHH:mm:ss.SSSZ');
+  // };
+
   return (
     <div className="mt-6 mb-8 flex flex-col gap-12">
       <Card>
@@ -214,6 +220,7 @@ const EditProduct = () => {
                 value={product.expired || ''}
                 onChange={handleInputChange}
               />
+              
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">

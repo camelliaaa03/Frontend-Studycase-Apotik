@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard, Auth, Form } from "@/layouts";
-// import {SignIn} from "@/pages/auth";
 import SignIn from "./pages/auth/sign-in";
-// import EditCategory from "@/pages/form/editCategory";
 
 function App() {
   

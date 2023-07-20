@@ -1,31 +1,15 @@
 import {useLocation, Link} from 'react-router-dom';
-import {
-  Navbar,
-  Typography,
-  Button,
-  IconButton,
-  Breadcrumbs,
-  Input,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Avatar,
-} from '@material-tailwind/react';
-import {
-  UserCircleIcon,
-  BellIcon,
-  ClockIcon,
-  CreditCardIcon,
-  Bars3Icon,
-} from '@heroicons/react/24/solid';
-import {
-  useMaterialTailwindController,
-  setOpenConfigurator,
-  setOpenSidenav,
-} from '@/context';
+import { Navbar, Typography, IconButton, Breadcrumbs, Input, Button } from '@material-tailwind/react';
+import { Bars3Icon } from '@heroicons/react/24/solid';
+import { useMaterialTailwindController, setOpenSidenav } from '@/context';
+
+import { useSelector } from 'react-redux';
+import authHeader from '../../services/auth-header';
 
 export function DashboardNavbar () {
+
+  const  { user } = useSelector((state) => state.auth);
+
   const [controller, dispatch] = useMaterialTailwindController ();
   const {fixedNavbar, openSidenav} = controller;
   const {pathname} = useLocation ();
@@ -64,8 +48,12 @@ export function DashboardNavbar () {
             {page}
           </Typography>
         </div>
-        <div className="flex items-center">
-          <div className="mr-auto md:mr-4 md:w-56">
+        <div className="flex items-center mr-10">
+          <Typography variant="h5" color="blue-gray">
+            {user ? `Welcome ${user.username}!` : 'Guest'}
+          </Typography>
+            
+          {/* <div className="ml-5 mr-auto md:mr-4 md:w-56">
             <Input label="Cari" />
           </div>
           <IconButton
@@ -75,7 +63,8 @@ export function DashboardNavbar () {
             onClick={() => setOpenSidenav (dispatch, !openSidenav)}
           >
             <Bars3Icon strokeWidth={3} className="h-6 w-6 text-blue-gray-500" />
-          </IconButton>
+          </IconButton> */}
+          
         </div>
       </div>
     </Navbar>

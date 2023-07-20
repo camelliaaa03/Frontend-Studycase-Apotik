@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardBody, Typography, Button } from "@material-tailwind/react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React from 'react';
 import TableCategory from "../../components/TableCategory";
 import { useSelector } from "react-redux";
@@ -20,8 +20,8 @@ export function Kategori() {
   };
 
   return (
-    <div className="mt-8 mb-8 flex flex-col gap-12">
-      <div class="basis-1/2 hover:basis-1/2">
+    <div className="mt-4 mb-4 flex flex-col gap-10">
+      <div className="basis-1/2 hover:basis-1/2">
         <Button disabled={isKasir} onClick={handleTambahData}>Tambah Data</Button>
       </div>
       <Card>

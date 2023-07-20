@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Typography,
-  Button,
-} from '@material-tailwind/react';
+import { Card, CardHeader, CardBody, Typography, Button } from '@material-tailwind/react';
 import { MinusCircleIcon, MagnifyingGlassIcon} from "@heroicons/react/24/outline";
 import { format } from 'date-fns';
 import { Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import authHeader from '../../services/auth-header';
 
 export function Transaksi() {
+
   const [orderData, setOrderData] = useState([]);
   const navigate = useNavigate();
+  const [message, setMessage] = useState(''); 
+  const { user } = useSelector((state) => state.auth);
+  const isKasir = user?.usename === 'kasir';
 
   useEffect(() => {
     const fetchOrderData = async () => {
@@ -29,16 +29,33 @@ export function Transaksi() {
   }, []);
 
   const handleDelete = async (orderId) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this order?');
+    if (!confirmDelete) {
+      return;
+    }
+
     try {
-      await axios.delete(`http://localhost:8080/api/order/${orderId}`);
-      setOrderData(orderData.filter((order) => order.id !== orderId));
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (user && user.accessToken) {
+        if (user.username === 'admin') {
+          await axios.delete(`http://localhost:8080/api/order/${orderId}`, { headers: authHeader() });
+          setMessage('Successfully deleted order');
+          setOrderData(orderData.filter((order) => order.id !== orderId));
+
+        } else {
+          alert('You dont have permission to delete this order');
+        }
+      } else {
+        alert('Token is invalid')
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div className="mt-8 mb-8 flex flex-col gap-12">
+    <div className="mt-4 mb-4 flex flex-col gap-10">
       <div className="basis-1/2 hover:basis-1/2">
         <Link to="/form/formTransaksi">
           <Button>Tambah Data</Button>
@@ -69,7 +86,7 @@ export function Transaksi() {
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="bg-white divide-y divide-gray-200">
               {orderData.map((order, index) => (
                 <tr key={order.id}>
                   {/* <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td> */}
@@ -99,14 +116,10 @@ export function Transaksi() {
                   <button
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl ml-2"
                     onClick={() => handleDelete(order.id)}
+                    disabled={isKasir}
                   >
                     <MinusCircleIcon strokeWidth={2} className="h-5 w-5" />
                   </button>
-                  {/* <button className="bg-yellow-500 hover:bg-yellow-700 text-black font-bold py-2 px-4 rounded-xl ml-2"
-                  onClick={() => handleDetail(order.id)}
-                  >
-                    <MagnifyingGlassIcon strokeWidth={2} className="h-5 w-5" />
-                  </button> */}
                   </td>
                   
                 </tr>
