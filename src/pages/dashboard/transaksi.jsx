@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardBody, Typography, Button } from '@material-tailwind/react';
-import { MinusCircleIcon, MagnifyingGlassIcon} from "@heroicons/react/24/outline";
+import { MinusCircleIcon, ArrowDownCircleIcon } from "@heroicons/react/24/outline";
 import { format } from 'date-fns';
 import { Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
@@ -120,6 +120,12 @@ export function Transaksi() {
                   >
                     <MinusCircleIcon strokeWidth={2} className="h-5 w-5" />
                   </button>
+                  {/* <button
+                      className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl ml-2"
+                      onClick={() => handleDownloadPdf(order.id)}
+                    >
+                      <ArrowDownCircleIcon strokeWidth={2} className="h-5 w-5" />
+                    </button> */}
                   </td>
                   
                 </tr>
@@ -133,3 +139,4 @@ export function Transaksi() {
 }
 
 export default Transaksi;
+

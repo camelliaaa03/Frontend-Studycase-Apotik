@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import UserService from "../../services/user.service";
 import EventBus from "../../common/EventBus";
 import authHeader from '../../services/auth-header';
-// import {parseISO, format } from 'date-fns';
+// import {parseISO, format } from 'date-fns';/
 
 const EditProduct = () => {
 
@@ -103,14 +103,14 @@ const EditProduct = () => {
         if (user && user.accessToken){
           if (user.username === 'admin') {
             await axios.put(`http://localhost:8080/api/products/${product.id}`, product, {headers: authHeader() });
-            console.log('Produk berhasil diperbarui');
+            alert('Product updated successfully');
             navigate('../../dashboard/daftarObat');
           } else {
             // Handle jika pengguna bukan admin
-            alert('Anda tidak memiliki izin untuk menambahkan kategori.');
+            alert('You dont have permission to update this product');
           }
         } else {
-          alert('Token tidak tersedia. Silakan login untuk melanjutkan.');
+          alert('Token expired, please try again');
         }
       }
     } catch (error) {
@@ -145,11 +145,6 @@ const EditProduct = () => {
     });
     navigate('../../dashboard/daftarObat');
   };
-
-  // const formatDateForInput = (isoDate) => {
-  //   const date = parseISO(isoDate);
-  //   return format(date, 'yyyy-MM-ddTHH:mm:ss.SSSZ');
-  // };
 
   return (
     <div className="mt-6 mb-8 flex flex-col gap-12">
