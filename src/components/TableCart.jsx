@@ -14,7 +14,7 @@ const TableCart = ({ resetCart }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/cart');
+        const response = await axios.get('http://localhost:8080/api/cart/');
         const sortedData = response.data.sort((b, a) => new Date(b.createdAt) - new Date(a.createdAt));
         setData(sortedData);
       } catch (error) {
@@ -57,7 +57,10 @@ const TableCart = ({ resetCart }) => {
         (b, a) => new Date(b.createdAt) - new Date(a.createdAt)
       );
       setData(sortedData);
-      resetCart(); // Panggil fungsi resetCart untuk mengosongkan data cart di komponen induk
+      // resetCart(); // Panggil fungsi resetCart untuk mengosongkan data cart di komponen induk
+
+      window.location.reload();
+      
     } catch (error) {
       console.error(error);
     }

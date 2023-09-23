@@ -40,17 +40,24 @@ const TableProductTransaksi = () => {
   // Lakukan filter pada data produk berdasarkan searchTerm
   const filteredData = filterData(data, searchTerm);
 
-  const handleAddToCart = async (event, productId) => {
+  const handleToCart = async (event, productId) => {
     event.preventDefault();
     try {
       const productToAdd = data.find((item) => item.id === productId);
-      const quantityToAdd = quantities[productId] || 1; // Mengambil nilai quantity dari objek quantities menggunakan ID produk
-      await axios.post('http://localhost:8080/api/cart', {
-        productId: productToAdd.id,
-        quantity: quantityToAdd,
-      });
-      setSuccessMessage('Produk berhasil ditambahkan ke keranjang');
-      setShouldRefresh(true);
+      const quantityToAdd = quantities[productId] || 1;
+  
+      // Periksa apakah stok mencukupi sebelum menambahkan ke cart
+      if (productToAdd.stok >= quantityToAdd) {
+        await axios.post('http://localhost:8080/api/cart', {
+          productId: productToAdd.id,
+          quantity: quantityToAdd,
+        });
+  
+        setSuccessMessage('Product successfully added to cart');
+        setShouldRefresh(true);
+      } else {
+        setErrorMessage('Not enough stock for this product');
+      }
     } catch (error) {
       console.error(error);
     }
@@ -87,6 +94,7 @@ const TableProductTransaksi = () => {
             <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Name</th>
             <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Kategori</th>
             <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Harga</th>
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Stok</th>
             <th className="border-b border-blue-gray-50 py-3 px-5 text-left">Qty</th>
           </tr>
         </thead>
@@ -111,7 +119,10 @@ const TableProductTransaksi = () => {
                 </div>
               </td>
               <td className="px-4 py-3 whitespace-nowrap">
-                <form onSubmit={(event) => handleAddToCart(event, item.id)}>
+                <div className="text-sm text-gray-900">{item.stok}</div>
+              </td>
+              <td className="px-4 py-3 whitespace-nowrap">
+                <form onSubmit={(event) => handleToCart(event, item.id)}>
                   <input className="mr-5 px-1 py-1 border border-gray-300 rounded-md"
                     type="number"
                     style={{ width: '60px' }}

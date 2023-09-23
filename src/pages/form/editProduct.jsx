@@ -17,6 +17,7 @@ const EditProduct = () => {
     harga: '',
     stok: '',
     expired: '',
+    description: '',
   });
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
@@ -140,6 +141,7 @@ const EditProduct = () => {
       name: '',
       categoryId: '',
       harga: '',
+      stok: '',
       expired: '',
       description: '',
     });
@@ -199,6 +201,20 @@ const EditProduct = () => {
                 type="number"
                 placeholder="Harga"
                 value={product.price || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="stok">
+                Stok
+              </label>
+              <input
+                className="block w-full px-4 py-2 pr-8 rounded-md border border-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                id="stok"
+                name="stok"
+                type="number"
+                placeholder="Stok"
+                value={product.stok || ''}
                 onChange={handleInputChange}
               />
             </div>

@@ -106,22 +106,25 @@ const TableProduct = () => {
             <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
               No
             </th>
-            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-center">
               Nama
             </th>
-            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-center">
               Harga
             </th>
             <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
+              Stok
+            </th>
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-center">
               Expired
             </th>
-            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-center">
               Kategori
             </th>
-            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-center">
               Deskripsi
             </th>
-            <th className="border-b border-blue-gray-50 py-3 px-5 text-left">
+            <th className="border-b border-blue-gray-50 py-3 px-5 text-center">
               Aksi
             </th>
             
@@ -144,6 +147,9 @@ const TableProduct = () => {
                   })}
                 </div>
               </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-gray-900">{item.stok}</div>
+              </td>
               <td className="px-6 py-4">
                 <div className="text-sm text-gray-900">
                 {format(new Date(item.expired), 'dd/MM/yyyy')}
@@ -153,7 +159,7 @@ const TableProduct = () => {
                 <div className="text-sm text-gray-900">{item.category.name}</div>
               </td>
               <td className="px-6 py-4">
-                <div className="text-sm text-gray-900 break-words">{item.description}</div>
+                <div className="text-sm text-gray-900 break-words text-justify">{item.description}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl ml-2" onClick={() => handleEdit(item.id)} ><PencilSquareIcon strokeWidth={2} className="h-5 w-5 flex items-center" /></button>

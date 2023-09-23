@@ -14,6 +14,7 @@ export function Produk () {
     name: '',
     categoryId: '',
     price: '',
+    stok:'',
     expired: '',
     description : '',
   });
@@ -134,6 +135,7 @@ export function Produk () {
       name: '',
       categoryId: '',
       price: '',
+      stok: '',
       description: '',
       expired: ''
     });
@@ -191,6 +193,20 @@ export function Produk () {
                 type="number"
                 placeholder="price"
                 value={formData.price}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="stok">
+                Stok
+              </label>
+              <input
+                className="block w-full px-4 py-2 pr-8 rounded-md border border-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                id="stok"
+                name="stok"
+                type="number"
+                placeholder="Stok"
+                value={formData.stok}
                 onChange={handleInputChange}
               />
             </div>

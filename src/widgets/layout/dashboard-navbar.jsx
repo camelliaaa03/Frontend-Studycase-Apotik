@@ -55,7 +55,7 @@ export function DashboardNavbar () {
             
           {/* <div className="ml-5 mr-auto md:mr-4 md:w-56">
             <Input label="Cari" />
-          </div>
+          </div> */}
           <IconButton
             variant="text"
             color="blue-gray"
@@ -63,7 +63,7 @@ export function DashboardNavbar () {
             onClick={() => setOpenSidenav (dispatch, !openSidenav)}
           >
             <Bars3Icon strokeWidth={3} className="h-6 w-6 text-blue-gray-500" />
-          </IconButton> */}
+          </IconButton>
           
         </div>
       </div>
